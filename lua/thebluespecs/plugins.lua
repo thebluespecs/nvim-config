@@ -121,6 +121,9 @@ return packer.startup(function(use)
           require('Comment').setup()
       end
   }
+  use {
+      'tpope/vim-fugitive'
+  }
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
