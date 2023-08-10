@@ -71,7 +71,6 @@ return packer.startup(function(use)
     -- or                            , branch = '0.1.x',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
-  -- TreeSitter
   use {
     'VonHeikemen/lsp-zero.nvim',
     requires = {
@@ -93,6 +92,7 @@ return packer.startup(function(use)
       {'rafamadriz/friendly-snippets'},
     }
   }
+  -- TreeSitter
   use ('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate'})
   -- Automatically set up your configuration after cloning packer.nvim
   use {
@@ -123,6 +123,9 @@ return packer.startup(function(use)
   }
   use {
       'tpope/vim-fugitive'
+  }
+  use {
+      'github/copilot.vim'
   }
   if PACKER_BOOTSTRAP then
     require("packer").sync()
