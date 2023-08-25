@@ -24,6 +24,7 @@ keymap("n", "<leader>h", "<C-w>h", opts)
 keymap("n", "<leader>j", "<C-w>j", opts)
 keymap("n", "<leader>k", "<C-w>k", opts)
 keymap("n", "<leader>l", "<C-w>l", opts)
+keymap("n", "<leader>v", "<C-w>v", opts)
 
 -- Nvim Tree Toggle
 -- keymap("n", "<C-n>", ":Lex 30<cr>", opts)
@@ -34,7 +35,7 @@ keymap("n", "<C-n>", ":NvimTreeToggle<cr>", opts)
 -- keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Insert --
--- Press fj fast to enter
+-- Press fj fast to esc
 keymap("i", "fj", "<ESC>", opts)
 
 -- Visual --
