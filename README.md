@@ -15,9 +15,7 @@ The above is used and tested on macOS, although should not present any problems 
 
 1. Install neovim using brew on macOS
 
-```bash
-brew install neovim
-```
+```brew install neovim```
 
 2. Neovim recognises your `~/.config/nvim` folder to look for configs.
 3. `after` subfolder also is included in the run time paths.

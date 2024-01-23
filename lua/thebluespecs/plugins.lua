@@ -124,6 +124,10 @@ return packer.startup(function(use)
   use {
       'tpope/vim-fugitive'
   }
+  -- Copilot
+  use {
+      'github/copilot.vim'
+  }
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
