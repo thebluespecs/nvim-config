@@ -1,6 +1,6 @@
 # Nvim-config
 
-This is my neovim config based of what [The Primagen's](http://youtube.com/@ThePrimeagen) has.
+Config for my daily driver text editor, neovim.
 
 The complete config is in LUA because neovim supports it as its scripting language.
 You can also port the above to vim script if you please to.
@@ -28,7 +28,7 @@ mkdir ~/.config/nvim
 1. clone the config and move it to your `.config/nvim`
 
 ```bash
-cp -v ./nvim-config/* ~/.config/nvim
+cp -vR ./nvim-config/* ~/.config/nvim
 ```
 
 1. start neovim and let it setup it up itself.
