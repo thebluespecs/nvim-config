@@ -43,7 +43,6 @@ keymap("n", "<leader>k", "<C-w>k", opts)
 keymap("n", "<leader>l", "<C-w>l", opts)
 
 -- Nvim Tree Toggle
--- keymap("n", "<C-n>", ":Lex 30<cr>", opts)
 keymap("n", "<C-n>", ":NvimTreeToggle<cr>", opts)
 
 -- Navigate buffers
@@ -70,13 +69,6 @@ keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
-
--- Terminal --
--- Better terminal navigation
--- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
--- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
--- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
--- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 vim.opt.backup = false                          -- creates a backup file
 vim.opt.clipboard = "unnamedplus"               -- allows neovim to access the system clipboard
@@ -123,6 +115,43 @@ vim.opt.shortmess:append "c"
 -- disable netrw at the very start of your init.lua (strongly advised)
 -- vim.g.loaded_netrw = 1
 -- vim.g.loaded_netrwPlugin = 1
+vim.diagnostic.config({
+    virtual_text = true,
+})
+
+local signs = {
+  Error = "",
+  Warn  = "",
+  Hint  = "⚑",  -- BLACK FLAG, U+2691
+  Info  = "",
+}
+
+for type, icon in pairs(signs) do
+  vim.fn.sign_define("DiagnosticSign" .. type, {
+    text = icon,
+    texthl = "DiagnosticSign" .. type,
+    numhl  = "DiagnosticSign" .. type,
+  })
+end
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  desc = "LSP keymaps",
+  callback = function(args)
+    local bufnr = args.buf
+    local opts = { buffer = bufnr, noremap = true, silent = true }
+
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+    vim.keymap.set("n", "<leader>t", vim.lsp.buf.workspace_symbol, opts)
+    vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
+    vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
+    vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
+    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+    vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+  end,
+})
 
 require("lazy").setup({
     spec = {
